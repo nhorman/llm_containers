@@ -1,0 +1,26 @@
+services:
+  ray_and_vllm:
+    build: ./vllm_server
+    network_mode: "host"
+    container_name: ray_and_vllm
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    shm_size: 10.24g
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - MN_IF_NAME=enp1s0f0np0
+      - VLLM_HOST_IP=169.254.138.85
+      - UCX_NET_DEVICES=enp1s0f0np0
+      - NCCL_SOCKET_IFNAME=enp1s0f0np0
+      - OMPI_MCA_btl_tcp_if_include=enp1s0f0np0
+      - GLOO_SOCKET_IFNAME=enp1s0f0np0
+      - TP_SOCKET_IFNAME=enp1s0f0np0
+      - RAY_memory_monitor_refresh_ms=0
+      - MASTER_ADDR=169.254.138.85
+
