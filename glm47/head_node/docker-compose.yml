@@ -1,6 +1,11 @@
+secrets:
+  hf_token:
+    file: ./hf_token_secret
+
 services:
   ray_and_vllm:
     build: ../containers/vllm_server
+    privileged: true 
     network_mode: "host"
     container_name: ray_and_vllm
     volumes:
@@ -24,4 +29,12 @@ services:
       - RAY_memory_monitor_refresh_ms=0
       - MASTER_ADDR=169.254.138.85
       - RAY_MODE=head
-
+  ollama:
+    privileged: true
+    network_mode: "host"
+    container_name: ollama
+    image: ollama/ollama
+    volumes:
+      - ./ollama:/root/.ollama
+    secrets:
+      - hf_token
