@@ -2,7 +2,7 @@ services:
   ray_and_vllm:
     build: ../containers/vllm_server
     network_mode: "host"
-    container_name: ray_and_vllm
+    container_name: ray_worker
     volumes:
       - ~/.cache/huggingface:/root/.cache/huggingface
     shm_size: 10.24g
@@ -15,7 +15,7 @@ services:
               capabilities: [gpu]
     environment:
       - MN_IF_NAME=enp1s0f0np0
-      - VLLM_HOST_IP=169.254.138.85
+      - VLLM_HOST_IP=169.254.16.216
       - UCX_NET_DEVICES=enp1s0f0np0
       - NCCL_SOCKET_IFNAME=enp1s0f0np0
       - OMPI_MCA_btl_tcp_if_include=enp1s0f0np0
@@ -23,5 +23,5 @@ services:
       - TP_SOCKET_IFNAME=enp1s0f0np0
       - RAY_memory_monitor_refresh_ms=0
       - MASTER_ADDR=169.254.138.85
-      - RAY_MODE=head
+      - RAY_MODE=worker
 
