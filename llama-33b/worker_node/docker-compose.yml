@@ -1,16 +1,12 @@
-secrets:
-  hf_token:
-    file: ./hf_token_secret
-
 services:
   ray_and_vllm:
     build: ../containers/vllm_server
     privileged: true 
     network_mode: "host"
-    container_name: ray_and_vllm
+    container_name: ray_worker-llama
     volumes:
       - ~/.cache/huggingface:/root/.cache/huggingface
-    shm_size: 20gb
+    shm_size: 20g
     deploy:
       resources:
         reservations:
@@ -18,11 +14,9 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
-    secrets:
-      - hf_token
     environment:
       - MN_IF_NAME=enp1s0f0np0
-      - VLLM_HOST_IP=169.254.138.85
+      - VLLM_HOST_IP=169.254.16.216
       - UCX_NET_DEVICES=enp1s0f0np0
       - NCCL_SOCKET_IFNAME=enp1s0f0np0
       - OMPI_MCA_btl_tcp_if_include=enp1s0f0np0
@@ -30,11 +24,5 @@ services:
       - TP_SOCKET_IFNAME=enp1s0f0np0
       - RAY_memory_monitor_refresh_ms=0
       - MASTER_ADDR=169.254.138.85
-      - RAY_MODE=head
-  tools_server:
-    container_name: tools_server
-    build:
-      context: ../../glm47/containers/openapi-servers/servers/filesystem/
-    ports:
-      - 8888:8000
+      - RAY_MODE=worker
 
