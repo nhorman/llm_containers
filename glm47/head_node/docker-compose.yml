@@ -18,6 +18,8 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
+    secrets:
+      - hf_token
     environment:
       - MN_IF_NAME=enp1s0f0np0
       - VLLM_HOST_IP=169.254.138.85
