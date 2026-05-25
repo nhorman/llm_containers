@@ -1,6 +1,8 @@
 secrets:
   hf_token:
     file: ./hf_token_secret
+volumes:
+  open-terminal:
 
 services:
   openui:
@@ -16,6 +18,7 @@ services:
     container_name: openterminal
     image: ghcr.io/open-webui/open-terminal
     volumes:
-      - ~/:/open-terminal
+      - open-terminal:/home/user
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - OPEN_TERMINAL_API_KEY=openterminalkey
