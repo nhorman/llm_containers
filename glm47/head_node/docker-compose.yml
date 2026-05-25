@@ -35,7 +35,7 @@ services:
     container_name: ollama
     image: ollama/ollama
     volumes:
-      - ./ollama:/root/.ollama
+      - ~/ollama:/root/.ollama
     secrets:
       - hf_token
   openui:
@@ -44,4 +44,13 @@ services:
     container_name: openwebui
     image: ghcr.io/open-webui/open-webui:main
     volumes:
-      - ./open-webui:/app/backend/data
+      - ~/open-webui:/app/backend/data
+  openterminal:
+    privileged: true
+    network_mode: "host"
+    container_name: openterminal
+    image: ghcr.io/open-webui/open-terminal
+    volumes:
+      - ~/:/open-terminal
+    environment:
+      - OPEN_TERMINAL_API_KEY=openterminalkey
