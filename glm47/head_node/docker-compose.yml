@@ -31,15 +31,6 @@ services:
       - RAY_memory_monitor_refresh_ms=0
       - MASTER_ADDR=169.254.138.85
       - RAY_MODE=head
-  ollama:
-    privileged: true
-    network_mode: "host"
-    container_name: ollama
-    build: ../containers/ollama
-    volumes:
-      - ~/ollama:/root/.ollama
-    secrets:
-      - hf_token
   openui:
     privileged: true
     network_mode: "host"
