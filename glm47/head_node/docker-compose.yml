@@ -33,7 +33,7 @@ services:
     privileged: true
     network_mode: "host"
     container_name: ollama
-    image: ollama/ollama
+    build: ../containers/ollama
     volumes:
       - ~/ollama:/root/.ollama
     secrets:
