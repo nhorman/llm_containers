@@ -34,7 +34,7 @@ services:
   tools_server:
     container_name: tools_server
     build:
-      context: ../containers/openapi-servers/servers/filesystem/
+      context: ../../glm47/containers/openapi-servers/servers/filesystem/
     ports:
       - 8888:8000
 

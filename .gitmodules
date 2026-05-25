@@ -1,0 +1,3 @@
+[submodule "glm47/containers/openapi-servers"]
+	path = glm47/containers/openapi-servers
+	url = https://github.com/open-webui/openapi-servers
