@@ -6,7 +6,7 @@ services:
     container_name: ray_worker
     volumes:
       - ~/.cache/huggingface:/root/.cache/huggingface
-    shm_size: 10.24g
+    shm_size: 20g
     deploy:
       resources:
         reservations:
