@@ -17,7 +17,7 @@ then
 		fi
 	done
 	echo "Have 2 nodes, starting vllm with GLM-4.7-Flash model"
-	vllm serve "zai-org/GLM-4.7-Flash" --host 0.0.0.0 --port 8000 --tensor-parallel-size=1 --pipeline-parallel-size=2 --distributed-executor-backend ray --gpu-memory-utilization=0.7 --max-model-len=-1 --enable-auto-tool-choice --tool-call-parser glm47
+	vllm serve "zai-org/GLM-4.7-Flash" --host 0.0.0.0 --port 3000 --tensor-parallel-size=1 --pipeline-parallel-size=2 --distributed-executor-backend ray --gpu-memory-utilization=0.7 --max-model-len=-1 --enable-auto-tool-choice --tool-call-parser glm47
 else
 	ray start -block --node-ip-address=${VLLM_HOST_IP} --address=${MASTER_ADDR}:6379 
 fi

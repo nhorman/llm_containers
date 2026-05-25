@@ -10,7 +10,7 @@ services:
     container_name: ray_and_vllm
     volumes:
       - ~/.cache/huggingface:/root/.cache/huggingface
-    shm_size: 10.24g
+    shm_size: 10.24gb
     deploy:
       resources:
         reservations:
