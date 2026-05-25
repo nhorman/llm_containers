@@ -38,3 +38,10 @@ services:
       - ./ollama:/root/.ollama
     secrets:
       - hf_token
+  openui:
+    privileged: true
+    network_mode: "host"
+    container_name: openwebui
+    image: ghcr.io/open-webui/open-webui:main
+    volumes:
+      - ./open-webui:/app/backend/data
