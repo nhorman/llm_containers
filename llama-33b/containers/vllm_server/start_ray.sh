@@ -18,5 +18,5 @@ then
 	export TORCHINDUCTOR_MAX_AUTOTUNE=0
 	vllm serve "meta-llama/Llama-3.3-70B-Instruct" --host 0.0.0.0 --port 3000 --tensor-parallel-size=1 --pipeline-parallel-size=2 --distributed-executor-backend ray --gpu-memory-utilization=0.7 --max-model-len=64K --enable-auto-tool-choice --tool-call-parser llama4_pythonic --trust-remote-code
 else
-	ray start -block --node-ip-address=${VLLM_HOST_IP} --address=${MASTER_ADDR}:6379 
+	ray start --block --node-ip-address=${VLLM_HOST_IP} --address=${MASTER_ADDR}:6379 
 fi
