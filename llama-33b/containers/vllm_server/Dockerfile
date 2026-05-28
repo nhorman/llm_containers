@@ -1,7 +1,4 @@
-FROM nvcr.io/nvidia/vllm:26.04-py3
-
-RUN python -m venv ~/vllm-latest
-RUN source ~/vllm-latest/bin/activate && pip install vllm transformers ray[default]
+FROM nvcr.io/nvidia/vllm:25.11-py3
 
 COPY ./start_ray.sh /
 RUN chmod 755 /start_ray.sh

@@ -1,7 +1,5 @@
 #!/bin/bash
 #
-source ~/vllm-latest/bin/activate
-
 export HF_TOKEN=$(cat /run/secrets/hf_token)
 
 if [ "$RAY_MODE" == "head" ]
